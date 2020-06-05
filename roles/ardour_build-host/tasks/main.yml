@@ -1,0 +1,6 @@
+- name: install required packages
+  package:
+    name: "{{ item.key }}"
+    state: "{{ item.value }}"
+  with_dict: "{{ ardour_build_dependencies |
+                 combine(ardour_build_dependencies_extra | default({})) }}"

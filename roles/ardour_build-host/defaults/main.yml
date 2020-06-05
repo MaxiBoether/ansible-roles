@@ -1,0 +1,9 @@
+# Packages to install (together with the desired versions) for the
+# compilation of Ardour.
+# The dict below will be combined with ``ardour_build_dependencies_extra``,
+# so you can use the latter to add/overwrite items in the former.
+ardour_build_dependencies:
+  git: latest
+  build-essential: latest
+  # ? libjack-dev
+  # ? jackd2
