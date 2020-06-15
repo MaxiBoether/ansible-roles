@@ -1,0 +1,9 @@
+# disable frequency scaling and run at maximum frequency
+KERNEL=="cpu*", SUBSYSTEM=="cpu", ATTR{cpufreq/scaling_governor}="performance"
+
+# According to Intel's document "Designing Real-Time Solutions on
+# Embedded Intel Architecture Processors", Turbo Boost requires
+# SpeedStep. We use the governor "performance", which should disable
+# SpeedStep, which should disable Tubo Boost. However, we disable Turbo
+# Boost explicitly to get a more predictable/consistent performance.
+KERNEL=="cpu",RUN+="/bin/sh -c 'echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo'"

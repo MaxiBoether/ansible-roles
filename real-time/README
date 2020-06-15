@@ -1,0 +1,3 @@
+Configures a host to be better suited for (soft) real-time tasks.
+
+You probably don't want this on you everyday multi-purpose computer.
