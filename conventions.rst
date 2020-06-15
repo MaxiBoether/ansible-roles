@@ -21,7 +21,6 @@ how to modify configurations
 
     * since it creates nice "managed by Ansible" markers by itself
     * instead of using the ``copy`` module
-    * load contents with, e.g., ``{{ lookup('file', '/foo.txt') }}``
     * also, |mods| are still possible
 
       * by editing the file outside the block
@@ -39,6 +38,36 @@ how to modify configurations
       * and |mods| are still possible
 
     * hence, keep the (Ansible) configuration options in (a) map(s)
+
+where to put configurations in the roles
+========================================
+
+In order of preference:
+
+* configuration in a file in the ``files`` directory
+
+  * if the file contents make sense on their own / if the
+    configuration file is usable on its own
+
+    * makes it easier for others to re-use the files
+    * for, e.g., ``blockinfile``, load contents with
+      ``{{ lookup('file', '/foo.txt') }}``
+
+  * if file does not need any variables (wouldn't work)
+  * use the same path in the ``files`` as on the remote
+    (e.g.: remote ``/x/y.conf`` stored as ``files/x/y.conf``)
+
+    * if possible
+    * for transparency
+
+* in variables
+
+  * preferred
+  * esp. the more individual the configuration is
+
+* hard-coded in the task files
+
+  * if invariant for the role
 
 task scheduling
 ===============
