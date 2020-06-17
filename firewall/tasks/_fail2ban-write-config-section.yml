@@ -1,4 +1,5 @@
-- name: remove empty static Fail2ban jail configuration section  '{{ section.key }}'
+- name: remove empty static Fail2ban jail configuration section '{{
+        section.key }}'
   ini_file:
     dest: "{{ config_file }}"
     section: "{{ section.key }}"
@@ -6,7 +7,8 @@
   when: not section.value
   notify: reload fail2ban
 
-- name: processing static Fail2ban jail configuration section '{{ section.key }}'
+- name: processing static Fail2ban jail configuration section '{{
+        section.key }}'
   ini_file:
     dest: "{{ config_file }}"
     section: "{{ section.key }}"

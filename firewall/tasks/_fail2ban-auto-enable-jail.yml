@@ -11,5 +11,5 @@
     section: "{{ fail2ban_jail_auto_enable.key }}"
     option: enabled
     value: "true"
-    state: "{{ 'present' if check_command_result.rc == 0 else 'absent'}}"
+    state: "{{ 'present' if check_command_result.rc == 0 else 'absent' }}"
   notify: reload fail2ban

@@ -39,6 +39,10 @@ ip46tables_custom_chains:
     table: nat
     add_to_chain: POSTROUTING
 
+# Use this variable to modify/extend ``ip46tables_custom_chains``.
+# If a key's value evaluates to false, the chain will be removed.
+ip46tables_custom_chains_extra: {}
+
 # This variable is mainly intended to extend ``ip46tables_custom_chains``
 # for providing default configurations.
 ip4tables_custom_chains: {}
@@ -47,7 +51,7 @@ ip4tables_custom_chains: {}
 # If a key's value evaluates to false, the chain will be removed.
 ip4tables_custom_chains_extra: {}
 
-# See ``ip46tables_custom_chains[_extra]``.
+# In analogy to ``ip4tables_custom_chains[_extra]``.
 ip6tables_custom_chains: {}
 ip6tables_custom_chains_extra: {}
 
@@ -203,7 +207,7 @@ fail2ban_config:
 fail2ban_jails_config_file: /etc/fail2ban/jail.d/50-via-ansible.local
 
 # Statically sets Fail2ban jail configuration.
-# You can use ``fail2ban_jails_extra_config`` to override values.
+# You can use ``fail2ban_jails_config_extra`` to override values.
 #
 # For the "mode" settings, see the corresponding file in
 # https://github.com/fail2ban/fail2ban/blob/master/config/filter.d/
@@ -226,7 +230,7 @@ fail2ban_jails_config:
     mode: aggressive
 
 # if you have fai2ban behind a reverse proxy, you might want to set:
-#fail2ban_jails_extra_config:
+#fail2ban_jails_config_extra:
 #  nginx-botsearch:
 #    action: iptables-http-x-forwarded-for
 #  nginx-nginx-http-auth:
@@ -234,7 +238,7 @@ fail2ban_jails_config:
 
 # Maps from jail names to a shell commands. If command exits with
 # code 0, the listed jails will be enabled, or disabled otherwise.
-# You can use ``fail2ban_jails_extra_auto_enable`` to override values.
+# You can use ``fail2ban_jails_auto_enable_extra`` to override values.
 fail2ban_jails_auto_enable:
   apache-auth: apache2 -v
   apache-badbots: apache2 -v

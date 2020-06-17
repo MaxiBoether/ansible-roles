@@ -4,7 +4,8 @@
       - "firewall_ssh_port | string | regex_search('[0-9]+')
          ==
          firewall_ssh_port | string"
-    fail_msg: "please set the ``firewall_ssh_port`` variable to use this role"
+    fail_msg: >
+      please set the ``firewall_ssh_port`` variable to use this role
 
 - name: install required iptables packages
   package:
@@ -20,6 +21,7 @@
       command: iptables
       custom_chains: "{{
         ip46tables_custom_chains
+        | combine(ip46tables_custom_chains_extra | default({}))
         | combine(ip4tables_custom_chains | default({}))
         | combine(ip4tables_custom_chains_extra | default({}))
       }}"
@@ -33,6 +35,7 @@
       command: ip6tables
       custom_chains: "{{
         ip46tables_custom_chains
+        | combine(ip46tables_custom_chains_extra | default({}))
         | combine(ip6tables_custom_chains | default({}))
         | combine(ip6tables_custom_chains_extra | default({}))
       }}"

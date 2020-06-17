@@ -1,0 +1,19 @@
+- name: load kernel module for iptables
+  register: modprobe_iptables_result
+  modprobe:
+    name: ip_tables
+    state: present
+
+- name: ensure kernel module for iptables is loaded at boot
+  lineinfile:
+    path: /etc/modules
+    line: ip_tables
+    regexp: '^ip_tables(\s.*)?'
+    create: yes
+  when: modprobe_iptables_result.changed
+
+- import_tasks: layer4.yml
+  become: yes
+
+- import_tasks: layer7.yml
+  become: yes

@@ -23,4 +23,4 @@
   ignore_errors: true
 
 - name: workaround https://github.com/ansible/ansible/issues/29405
-  include_tasks: handlers/_iptables-workaround-29405.yml
+  import_tasks: handlers/_iptables-workaround-29405.yml
