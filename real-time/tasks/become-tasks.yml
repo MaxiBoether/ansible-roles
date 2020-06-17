@@ -10,8 +10,7 @@
 
 - name: add udev rules to disable frequency scaling etc.
   blockinfile:
-    path: "/{{ item }}"
-    block: "{{ lookup('file', item) }}"
+    path: "/etc/udev/rules.d/{{ item.path }}"
+    block: "{{ lookup('file', item.src) }}"
     create: yes
-  with_items:
-    - etc/udev/rules.d/50-no-frequency-scaling.rules
+  with_filetree: etc/udev/rules.d

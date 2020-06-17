@@ -13,10 +13,10 @@
 
 - name: link in audio configuration for pam_limits
   blockinfile:
-    path: "/{{ item }}"
+    path: "/etc/security/limits.d/{{ item.path }}"
     block: "{{
-      lookup('file', item)
+      lookup('file', item.src)
     }}"
     create: yes
+  with_filetree: etc/security/limits.d/
   with_items:
-    - etc/security/limits.d/real-time_audio.conf

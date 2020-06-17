@@ -1,3 +1,5 @@
-A very simple role for me to remember my preferred audio packages.
+A very simple role which installs a few audio-related packages
+(i.e., my preferred audio packages per default).
 
-For pure audio systems, more tweaks need to be made.
+For pure audio systems, more tweaks need to be made (see also role
+"real-time").
