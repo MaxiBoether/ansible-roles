@@ -1,0 +1,17 @@
+- name: install real-time kernel
+  package:
+    name: "linux-image-rt-{{ ansible_kernel.split('-')[-1] }}"
+    state: present
+
+#~ - name: remove non-real-time kernel
+  #~ package:
+    #~ name: "linux-image-{{ ansible_kernel.split('-')[-1] }}"
+    #~ state: absent
+
+- name: add udev rules to disable frequency scaling etc.
+  blockinfile:
+    path: "/{{ item }}"
+    block: "{{ lookup('file', item) }}"
+    create: yes
+  with_items:
+    - etc/udev/rules.d/50-no-frequency-scaling.rules
