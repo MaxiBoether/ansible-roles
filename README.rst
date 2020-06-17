@@ -17,9 +17,6 @@ Otherwise, you'll possibly loose something you love.
 
 If you run these roles, have recent backups.
 
-Some configuration points are provided via the roles' variables;
-please see the roles' ``defaults/main.yml``.
-
 Feel free to read/try/use/extend them
 and to contact me if you have any questions.
 
@@ -31,6 +28,25 @@ You (should) find README files in the roles' directories.
 There are also `a few random notes on (intended) conventions
 <conventions.rst>`__.
 
-Configuration files which are not used by these roles but maybe
-interesting for others as well are kept in
-`this repository <https://gitlab.com/lpirl/dotfiles>`__.
+configuration variables
+-----------------------
+
+Some configuration points are provided via the roles' variables;
+please see the roles' ``defaults/main.yml``.
+Of course, you can override the roles' defaults.
+
+We sometimes provide ``<variable name>_extra`` which will be considered
+*in addition to* ``<variable name>`` (e.g., lists are extended,
+dictionaries are merged, etc.). PRs welcome where ``<variable
+name>_extra`` is not implemented yet.
+
+Alternatively, you can use the Ansible configuration ``hash_behaviour =
+merge`` to achieve merging of dictionaries "globally", e.g., where
+``<variable name>_extra`` is not implemented yet.
+
+links
+-----
+
+Further configuration files – which are not used by these roles — are
+kept at `gitlab.com/lpirl/dotfiles
+<https://gitlab.com/lpirl/dotfiles>`__.
