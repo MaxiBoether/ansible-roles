@@ -91,4 +91,10 @@ task scheduling
   * maybe systemd override files which add ``ExecStartPre`` to wait
     for AC
 
+become
+======
+
+* specify ``become: yes`` in the tasks and don't require users of the
+  roles to specify ``become: yes`` globally on Play level
+
 .. |mods| replace:: manual modifications on the remote machine
