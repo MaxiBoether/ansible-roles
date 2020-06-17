@@ -8,7 +8,6 @@ audio_packages:
   audacity:                       present
   audacious:                      present
   qjackctl:                       present
-  ardour:                         present
   japa:                           present
   libffado2:                      present
   ffado-tools:                    present
