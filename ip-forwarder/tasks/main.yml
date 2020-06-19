@@ -1,12 +1,10 @@
 - name: enable IP forwarding
-  lineinfile:
-    dest: /etc/sysctl.d/95-forwarding.conf
-    line: "{{ item }} = 1"
-    regexp: '^(#\s*)?{{ item|regex_escape }}\s.*'
+  blockinfile:
+    dest: /etc/sysctl.d/55-ip-forwarding.conf
+    block: |
+      net.ipv4.ip_forward = 1
+      net.ipv4.conf.all.forwarding = 1
     create: yes
-  with_items:
-    - net.ipv4.ip_forward
-    - net.ipv4.conf.all.forwarding
 
 - name: enable netfilter/iptable rules on bridges (hot)
   modprobe:
